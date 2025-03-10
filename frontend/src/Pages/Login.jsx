@@ -19,8 +19,8 @@ const LoginPage = () => {
     e.preventDefault();
     // Handle login logic here
     console.log('Login submitted:', formData);
-    // Navigate to dashboard after successful login
-    navigate('/dashboard');
+    // Navigate to student profile page after successful login
+    navigate('/student-profile');
   };
 
   // Handler for forgot password link

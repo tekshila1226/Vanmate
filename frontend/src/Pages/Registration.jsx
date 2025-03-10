@@ -15,6 +15,7 @@ const RegisterPage = () => {
     occupation: '',
     homeAddress: '',
     nearestTown: '',
+    pickupLocation: '',
     username: '',
     password: '',
     confirmPassword: ''
@@ -27,10 +28,29 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle registration logic here
+    
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+    
+    localStorage.setItem('vanmateUserData', JSON.stringify({
+      studentName: formData.studentName,
+      parentName: formData.parentName,
+      school: formData.school,
+      // Add other relevant fields
+    }));
+    
     console.log('Form submitted:', formData);
-    // Navigate to success page or login page after successful registration
-    navigate('/login');
+    
+    // Navigate to the dashboard with the student name as state
+    navigate('/van-dashboard', { 
+      state: { 
+        studentName: formData.studentName,
+        newRegistration: true 
+      } 
+    });
   };
 
   return (
